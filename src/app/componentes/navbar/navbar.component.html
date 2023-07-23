@@ -1,0 +1,53 @@
+<mat-toolbar>
+    <!-- Icono a la izquierda -->
+    <img src="/assets/icon/logo-fix.png" alt="" srcset="">
+
+    <!-- Buscador en el centro -->
+    <div class="search-container">
+        <div class="search-input">
+            <input matInput placeholder="¿ Que estas buscando?" />
+        </div>
+        <button class="search-icon">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+
+
+
+    <!-- Botones a la derecha -->
+    <div class="navbar-actions">
+        <!-- Botón "Ingresar" con ícono de usuario -->
+        <button mat-raised-button color="accent" class="btn-ingresar" routerLink="/ingresar">
+            <mat-icon>person</mat-icon>
+            <span>Ingresar</span>
+        </button>
+
+        <!-- Botón del carrito con ícono de carrito y contador -->
+        <button mat-button class="btn-carrito">
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Carrito</span>
+            <span class="cart-item-count">3</span> <!-- Contador -->
+        </button>
+    </div>
+</mat-toolbar>
+
+<nav class="categories-menu">
+    <ul>
+        <li> <button class="category-button" (click)="verCategorias()">CATEGORIAS</button>
+        </li>
+        <li><a routerLink="/">INICIO</a></li>
+        <li> <a routerLink="/categorias/discos">DISCOS</a></li>
+        <li> <a routerLink="/categorias/memorias">MEMORIAS</a></li>
+        <li> <a routerLink="/categorias/monitores">MONITORES</a></li>
+        <li> <a routerLink="/categorias/memorias">PROCESADORES</a></li>
+        <li> <a routerLink="/categorias/teclados">TECLADOS</a></li>
+    </ul>
+</nav>
+
+<div class="category-list" *ngIf="vistaCategorias">
+    <a routerLink="/categorias/discos">Discos</a>
+    <a routerLink="/categorias/memorias">Memorias</a>
+    <a routerLink="/categorias/monitores">Monitores</a>
+    <a routerLink="/categorias/memorias">Procesadores</a>
+    <a routerLink="/categorias/teclados">Teclados</a>
+</div>
