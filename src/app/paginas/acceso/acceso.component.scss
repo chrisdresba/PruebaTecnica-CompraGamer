@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#contenedor {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(45deg, #090732 50%, #ccc 50%);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(90deg, #090732, #ccc);
+  }
+
+  &::before {
+    left: 0;
+    clip-path: polygon(0 100%, 100% 50%, 100% 100%, 0% 100%);
+  }
+
+  &::after {
+    right: 0;
+    clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 100%);
+  }
+}
+
+.box-acceso {
+  width: 450px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 40px #b5b0b0;
+  margin: 16px 10px 50px;
+}
+
+.box-registro {
+  width: 550px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 40px #b5b0b0;
+  margin: 16px 10px 50px;
+}
+
+.titulo {
+  padding: 10px 0 30px;
+  color: #000;
+}
+
+#logo {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 20px;
+}
+
+.acceso {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.formLogin {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    margin-top: 10px;
+  }
+
+  mat-form-field {
+    padding: 5px 20px;
+    input {
+      padding: 0 !important;
+    }
+  }
+
+  button {
+    width: 90%;
+    height: 40px;
+  }
+}
+
+.formRegistro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .tituloRegistro {
+    padding: 0px 0px 30px;
+    color: #000;
+  }
+
+  img {
+    margin-top: 10px;
+  }
+
+  .cajaRegistro {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 10px;
+  }
+
+  mat-form-field {
+    width: 100%;
+    padding: 4px 10px;
+    input {
+      padding: 0 !important;
+    }
+  }
+}
+
+label {
+  margin-top: 20px;
+  font-size: 2em;
+  font-style: italic;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  width: 65%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #0a0f31;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+#btn-Register {
+  width: 100%;
+  height: 40px;
+  margin: auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #0a0f31;
+  font-size: 1em;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+p {
+  text-align: center;
+  padding: 10px;
+}
+
+a {
+  color: #0797b8 !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#btnCerrar {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.inputNumerico::-webkit-inner-spin-button,
+.inputNumerico::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputNumerico {
+  -moz-appearance: textfield;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 280px) and (max-width: 600px) {
+  .main {
+    margin-top: 10vh;
+  }
+}
+
+@media only screen and (min-width: 260px) and (max-width: 600px) {
+  .cajaRegistro {
+    display: flex;
+    flex-direction: column !important;
+  }
+}

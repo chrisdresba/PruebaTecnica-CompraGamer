@@ -1,1 +1,130 @@
-<p>acceso works!</p>
+<div id="contenedor">
+    <div class="box-acceso" *ngIf="vista">
+        <div class="acceso">
+            <form [formGroup]="formLogin" class="formLogin">
+                <img id="logo" src="/assets/icon/logo-fix.png" alt="COMPRA GAMER" />
+                <label for="chk" aria-hidden="true" class="titulo">¿TENES CUENTA?</label>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Ingresá tu email</mat-label>
+                    <input matInput formControlName="email" type="email" class="custom-input" required>
+                    <mat-error *ngIf="formLogin.get('email')?.hasError('email')">Debe ingresar un mail</mat-error>
+                    <mat-error *ngIf="formLogin.get('email')?.hasError('required')">Debe ingresar un mail
+                        válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Ingresá tu contraseña</mat-label>
+                    <input matInput formControlName="contraseña" type="{{ vistaClave ? 'password' : 'text' }}"
+                        class="custom-input" required>
+                    <mat-icon matSuffix (click)="verClave()">{{ vistaClave ? 'visibility_off' : 'visibility'
+                        }}</mat-icon>
+                    <mat-error *ngIf="formLogin.get('contraseña')?.hasError('required')">Ingrese un mínimo de 6
+                        caracteres</mat-error>
+                    <mat-error *ngIf="formLogin.get('contraseña')?.hasError('minlength')">Ingrese un mínimo de 6
+                        caracteres</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" [disabled]="!formLogin.valid"
+                    (click)="ingresar()">INGRESAR</button>
+
+                <p>¿No tenes una cuenta? <a (click)="vistaForm()">Regístrate</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="box-registro" *ngIf="!vista">
+        <div class="registro">
+            <!--registro-->
+            <form [formGroup]="formRegistro" class="formRegistro">
+                <img id="btnCerrar" src="/assets/icon/atras.png" (click)="vistaForm()" />
+                <img id="logo" src="/assets/icon/logo-fix.png" alt="COMPRA GAMER" />
+
+                <label for="chk" aria-hidden="true" class="tituloRegistro">Crea tu cuenta</label>
+
+                <div class="cajaRegistro">
+                    <div class="filas">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombre" type="text" required>
+                            <mat-error *ngIf="formRegistro.get('nombre')?.hasError('required')">Ingrese su
+                                nombre</mat-error>
+                            <mat-error *ngIf="formRegistro.get('nombre')?.hasError('maxlength')">Ingrese un máximo
+                                de 20
+                                caracteres</mat-error>
+                            <mat-error *ngIf="formRegistro.get('nombre')?.hasError('pattern')">Solo ingresar
+                                letras</mat-error>
+                            <mat-error *ngIf="formRegistro.get('nombre')?.hasError('minlength')"></mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input matInput formControlName="apellido" type="text" required>
+                            <mat-error *ngIf="formRegistro.get('apellido')?.hasError('required')">Ingrese su
+                                apellido</mat-error>
+                            <mat-error *ngIf="formRegistro.get('apellido')?.hasError('maxlength')">Ingrese un máximo
+                                de 20 caracteres</mat-error>
+                            <mat-error *ngIf="formRegistro.get('apellido')?.hasError('pattern')">Solo ingresar
+                                letras</mat-error>
+                            <mat-error *ngIf="formRegistro.get('apellido')?.hasError('minlength')"></mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Dni</mat-label>
+                            <input matInput formControlName="dni" type="text" class="inputNumerico" required>
+                            <mat-error>{{ validarDni() }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="telefono" type="text" required>
+                            <mat-error>{{ validarTelefono() }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="filas">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" type="email" required>
+                            <mat-error *ngIf="formRegistro.get('email')?.hasError('required')">Debe ingresar un
+                                mail</mat-error>
+                            <mat-error *ngIf="formRegistro.get('email')?.hasError('email')">Debe ingresar un mail
+                                válido</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput formControlName="contraseña" type="{{ vistaClave ? 'password' : 'text' }}"
+                                required>
+                            <mat-icon matSuffix (click)="verClave()">{{ vistaClave ? 'visibility_off' : 'visibility'
+                                }}</mat-icon>
+                            <mat-error *ngIf="formRegistro.get('contraseña')?.hasError('required')">Debe ingresar una
+                                contraseña</mat-error>
+                            <mat-error *ngIf="formRegistro.get('contraseña')?.hasError('minlength')">Mínimo 6
+                                caracteres</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Reingresar contraseña</mat-label>
+                            <input matInput formControlName="contraseñaVal"
+                                type="{{ vistaClave ? 'password' : 'text' }}" required>
+                            <mat-icon matSuffix (click)="verClave()">{{ vistaClave ? 'visibility_off' : 'visibility'
+                                }}</mat-icon>
+                            <!-- En esta linea de abajo, se valida el ingreso de la contraseña  
+                             <mat-error *ngIf="formRegistro.get('contraseñaVal')?.hasError('required')">Debe reingresar
+                                su contraseña</mat-error>-->
+                            <mat-error *ngIf="!passwordValidacion()">Las contraseñas no coinciden</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <button (click)="registrar()" id="btn-Register" [disabled]="!formRegistro.valid">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
