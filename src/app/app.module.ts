@@ -13,6 +13,11 @@ import { Error404Component } from './paginas/error404/error404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
+import { ItemProductoComponent } from './componentes/item-producto/item-producto.component';
+import { ListaProductosComponent } from './componentes/lista-productos/lista-productos.component';
+import { ListaCategoriasComponent } from './componentes/lista-categorias/lista-categorias.component';
+import { ItemCategoriaComponent } from './componentes/item-categoria/item-categoria.component';
+import { ProductosComponent } from './paginas/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { MaterialModule } from './material.module';
     NavbarComponent,
     FooterComponent,
     Error404Component,
+    ItemProductoComponent,
+    ListaProductosComponent,
+    ListaCategoriasComponent,
+    ItemCategoriaComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,

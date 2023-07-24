@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+  padding: 10px;
+
+  .card-name {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+  }
+}

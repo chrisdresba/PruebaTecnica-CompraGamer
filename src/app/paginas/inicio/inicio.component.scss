@@ -1,0 +1,52 @@
+#container {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#banner {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 600;
+  font-family: italic;
+  margin: 2em 0 0 3em;
+  text-align: start;
+}
+a {
+  text-decoration: none;
+  text-align: start;
+  display: flex;
+  margin-left: 6em;
+  color: #1f75c1;
+  font-weight: 400;
+}
+
+hr {
+  background-color: rgb(27, 103, 218);
+  width: 60px;
+  height: 3px;
+  margin-left: 6em;
+}
+
+.listado {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+}

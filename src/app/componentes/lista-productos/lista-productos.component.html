@@ -1,0 +1,7 @@
+<div class="main">
+    <ul class="cards">
+        <li *ngFor="let item of arrayProductos" class="cards_item">
+            <app-item-producto id="item" [producto]="item" [estado]="false"></app-item-producto>
+        </li>
+    </ul>
+</div>

@@ -1,1 +1,12 @@
-<p>inicio works!</p>
+<div id="container">
+    <div id="banner" [style.background-image]="'url(assets/background.webp)'">
+    </div>
+    <br>
+    <h1>Productos Destacados</h1>
+    <a routerLink="/categorias">Ver Todos</a>
+    <hr>
+    <app-lista-productos class="listado" [arrayProductos]="arrayProductos"> </app-lista-productos>
+    <br>
+    <br>
+
+</div>

@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #ecf9ff;
+}
+
+.main {
+  width: 100%;
+  margin: 0 auto;
+  margin-left: 30px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+.cards_item {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
