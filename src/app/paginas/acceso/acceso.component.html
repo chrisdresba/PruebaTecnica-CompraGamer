@@ -104,6 +104,7 @@
                                 contraseña</mat-error>
                             <mat-error *ngIf="formRegistro.get('contraseña')?.hasError('minlength')">Mínimo 6
                                 caracteres</mat-error>
+
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
@@ -112,10 +113,7 @@
                                 type="{{ vistaClave ? 'password' : 'text' }}" required>
                             <mat-icon matSuffix (click)="verClave()">{{ vistaClave ? 'visibility_off' : 'visibility'
                                 }}</mat-icon>
-                            <!-- En esta linea de abajo, se valida el ingreso de la contraseña  
-                             <mat-error *ngIf="formRegistro.get('contraseñaVal')?.hasError('required')">Debe reingresar
-                                su contraseña</mat-error>-->
-                            <mat-error *ngIf="!passwordValidacion()">Las contraseñas no coinciden</mat-error>
+                            <mat-error>{{ passwordValidacion() }}</mat-error>
                         </mat-form-field>
 
                     </div>

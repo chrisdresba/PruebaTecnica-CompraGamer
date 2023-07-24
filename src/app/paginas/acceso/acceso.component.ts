@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/interfaces/usuario';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   FormGroup,
@@ -112,6 +113,14 @@ export class AccesoComponent {
   async registrar(): Promise<void> {
     try {
       if (this.formRegistro.valid) {
+        if (
+          this.formRegistro.value.contraseña !=
+          this.formRegistro.value.contraseñaVal
+        ) {
+          console.log('Las contraseñas no coinciden');
+          return;
+        }
+
         const usuario: Usuario = {
           nombre: this.formRegistro.value.nombre,
           apellido: this.formRegistro.value.apellido,
@@ -119,8 +128,7 @@ export class AccesoComponent {
           email: this.formRegistro.value.email,
           telefono: this.formRegistro.value.telefono,
           contraseña: this.formRegistro.value.contraseña,
-          id: 10,
-          // Otros campos del usuario si los tienes
+          id: uuidv4(),
         };
 
         // Registrar el usuario utilizando el servicio
@@ -139,8 +147,6 @@ export class AccesoComponent {
     } catch (error) {
       console.log(error);
     }
-
-    // Resto del código del componente
   }
 
   vistaForm() {
@@ -154,10 +160,22 @@ export class AccesoComponent {
     this.vistaClave = !this.vistaClave;
   }
 
-  passwordValidacion(): boolean {
+  passwordValidacion() {
     const contraseña = this.formRegistro.value.contraseña;
     const contraseñaVal = this.formRegistro.value.contraseñaVal;
-    return contraseña === contraseñaVal;
+    if (this.formRegistro.get('contraseñaVal')?.hasError('required')) {
+      return 'Ingrese su contraseña';
+    }
+    if (this.formRegistro.get('telefono')?.hasError('pattern')) {
+      return 'Debe ingresar solo números';
+    }
+    if (this.formRegistro.get('contraseñaVal')?.hasError('minLength')) {
+      return 'Mínimo 6 caracteres';
+    }
+    if (contraseña != contraseñaVal) {
+      return 'Las contraseñas no coinciden';
+    }
+    return '';
   }
 
   validarDni() {
@@ -190,23 +208,5 @@ export class AccesoComponent {
       return 'Debe ingresar un telefono válido';
     }
     return '';
-  }
-
-  validarEmail(email: string) {
-    let expr =
-      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (!expr.test(email)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  validarPassword(password: string) {
-    if (password.length >= 5) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
