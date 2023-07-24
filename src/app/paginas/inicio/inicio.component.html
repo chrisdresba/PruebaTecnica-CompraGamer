@@ -2,9 +2,11 @@
     <div id="banner" [style.background-image]="'url(assets/background.webp)'">
     </div>
     <br>
-    <h1>Productos Destacados</h1>
-    <a routerLink="/categorias">Ver Todos</a>
-    <hr>
+    <div class="box">
+        <h1>Productos Destacados</h1>
+        <a routerLink="/categorias">Ver Todos</a>
+        <hr>
+    </div>
     <app-lista-productos class="listado" [arrayProductos]="arrayProductos"> </app-lista-productos>
     <br>
     <br>

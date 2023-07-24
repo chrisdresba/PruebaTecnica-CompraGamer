@@ -18,6 +18,7 @@ import { ListaProductosComponent } from './componentes/lista-productos/lista-pro
 import { ListaCategoriasComponent } from './componentes/lista-categorias/lista-categorias.component';
 import { ItemCategoriaComponent } from './componentes/item-categoria/item-categoria.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
+import { CategoriaNombrePipe } from './shared/pipes/categoria-nombre.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProductosComponent } from './paginas/productos/productos.component';
     ListaCategoriasComponent,
     ItemCategoriaComponent,
     ProductosComponent,
+    CategoriaNombrePipe,
   ],
   imports: [
     BrowserModule,

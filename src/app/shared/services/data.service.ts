@@ -41,5 +41,13 @@ export class DataService {
     return this.http.get<SubCategoria[]>(url);
   }
 
+  obtenerCategoriaPorId(id: number): Observable<SubCategoria[]> {
+    return this.obtenerSubcategorias().pipe(
+      map((categorias: SubCategoria[]) =>
+        categorias.filter((categoria) => categoria.id == id)
+      )
+    );
+  }
+
   agregarCarrito(item: Producto) {}
 }

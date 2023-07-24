@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Imagen } from 'src/app/shared/interfaces/producto';
+import { CarritoService } from 'src/app/shared/services/carrito.service';
 import { DataService } from 'src/app/shared/services/data.service';
 import { environment } from 'src/environment/environment';
 
@@ -15,7 +16,10 @@ export class ItemProductoComponent implements OnInit {
   imagen: string = '';
   urlBase: string = environment.urlBaseImgProducto;
 
-  constructor(private service: DataService) {}
+  constructor(
+    private service: DataService,
+    public serviceCarrito: CarritoService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerURLImagen();
@@ -26,7 +30,7 @@ export class ItemProductoComponent implements OnInit {
   }
 
   agregarProducto(producto: any) {
-    this.service.agregarCarrito(producto);
+    this.serviceCarrito.agregarProducto(producto, this.imagen);
   }
 
   detalle(producto: any) {

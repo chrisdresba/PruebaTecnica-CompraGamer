@@ -7,11 +7,12 @@
   flex-direction: column;
   overflow: hidden;
   height: 400px;
-  width: 300px;
+  width: 290px;
   text-align: center;
   justify-content: center;
   align-items: center;
   margin: 10px;
+  padding: 5px;
 }
 .card:hover {
   box-shadow: 0 20px 40px -14px rgba(12, 112, 235, 0.611);
@@ -74,7 +75,7 @@
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .precio {
