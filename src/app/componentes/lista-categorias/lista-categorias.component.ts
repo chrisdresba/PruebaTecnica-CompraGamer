@@ -1,12 +1,4 @@
-import {
-  Component,
-  Input,
-  HostListener,
-  ViewChild,
-  ElementRef,
-  OnInit,
-} from '@angular/core';
-import { Categoria } from 'src/app/shared/interfaces/categoria';
+import { Component, Input, OnInit } from '@angular/core';
 import { SubCategoria } from 'src/app/shared/interfaces/sub-categoria';
 
 @Component({

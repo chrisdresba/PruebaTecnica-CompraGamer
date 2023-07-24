@@ -32,8 +32,4 @@ export class ItemProductoComponent implements OnInit {
   agregarProducto(producto: any) {
     this.serviceCarrito.agregarProducto(producto, this.imagen);
   }
-
-  detalle(producto: any) {
-    this.detalleProducto.emit(producto);
-  }
 }

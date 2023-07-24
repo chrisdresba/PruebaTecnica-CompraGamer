@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   // secretKey: clave secreta para encriptar las contraseñas
+  secretKey: 'pruebaCompraGamer2023',
   apiUrl: 'https://static.compragamer.com/test',
   urlBaseImgProducto:
     'https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_',

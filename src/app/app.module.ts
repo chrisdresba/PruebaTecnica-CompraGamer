@@ -19,6 +19,8 @@ import { ListaCategoriasComponent } from './componentes/lista-categorias/lista-c
 import { ItemCategoriaComponent } from './componentes/item-categoria/item-categoria.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { CategoriaNombrePipe } from './shared/pipes/categoria-nombre.pipe';
+import { MonedaPipe } from './shared/pipes/moneda.pipe';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { CategoriaNombrePipe } from './shared/pipes/categoria-nombre.pipe';
     ItemCategoriaComponent,
     ProductosComponent,
     CategoriaNombrePipe,
+    MonedaPipe,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

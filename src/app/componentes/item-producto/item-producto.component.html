@@ -1,7 +1,7 @@
 <div class="card">
     <div class="imagen"><img src="{{imagen}}"></div>
     <div class="contenedor">
-        <p class="precio">${{producto.precio}}</p>
+        <p class="precio">{{producto.precio | moneda}}</p>
         <h2 class="titulo">{{producto.nombre}}</h2>
         <p class="textos">{{producto.id_subcategoria | categoriaNombre | async}}</p>
         <button type="button" (click)="agregarProducto(producto)" class="btn btn_agregar">Agregar al Carrito</button>

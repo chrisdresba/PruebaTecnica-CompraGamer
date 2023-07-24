@@ -1,6 +1,6 @@
 <mat-toolbar>
     <!-- Icono a la izquierda -->
-    <img src="/assets/icon/logo-fix.png" alt="" srcset="">
+    <img src="/assets/icon/logo-fix.png" alt="" routerLink="/" srcset="">
 
     <!-- Buscador en el centro -->
     <div class="search-container">
@@ -17,37 +17,58 @@
     <!-- Botones a la derecha -->
     <div class="navbar-actions">
         <!-- Botón "Ingresar" con ícono de usuario -->
-        <button mat-raised-button color="accent" class="btn-ingresar" routerLink="/ingresar">
+        <button *ngIf="!sesion" mat-raised-button color="accent" class="btn-ingresar" routerLink="/ingresar">
             <mat-icon>person</mat-icon>
             <span>Ingresar</span>
         </button>
 
+        <button *ngIf="sesion" mat-raised-button color="accent" class="btn-ingresar" (click)="salir()">
+            <mat-icon>person</mat-icon>
+            <span>Salir</span>
+        </button>
+
         <!-- Botón del carrito con ícono de carrito y contador -->
-        <button mat-button class="btn-carrito">
+        <button mat-button class="btn-carrito" (click)="verCarrito()">
             <mat-icon>shopping_cart</mat-icon>
             <span>Carrito</span>
-            <span class="cart-item-count">{{contador}}</span> <!-- Contador -->
-        </button>
+            <span class="cart-item-count">{{contador}}</span>
     </div>
 </mat-toolbar>
 
 <nav class="categories-menu">
     <ul>
-        <li> <button class="category-button" (click)="verCategorias()">CATEGORIAS</button>
+        <li class="icono">
+            <mat-icon>subject</mat-icon>
+            <a (click)="verCategorias()">CATEGORIAS</a>
         </li>
-        <li><a routerLink="/">INICIO</a></li>
-        <li> <a routerLink="/categorias/discos">DISCOS</a></li>
-        <li> <a routerLink="/categorias/memorias">MEMORIAS</a></li>
-        <li> <a routerLink="/categorias/monitores">MONITORES</a></li>
-        <li> <a routerLink="/categorias/memorias">PROCESADORES</a></li>
-        <li> <a routerLink="/categorias/teclados">TECLADOS</a></li>
+        <li> <a class="itemResponsive" routerLink="/categorias/19">DISCOS</a></li>
+        <li> <a class="itemResponsive" routerLink="/categorias/15">MEMORIAS</a></li>
+        <li> <a class="itemResponsive" routerLink="/categorias/5">MONITORES</a></li>
+        <li> <a class="itemResponsive" routerLink="/categorias/58">NOTEBOOKS</a></li>
+        <li> <a class="itemResponsive" routerLink="/categorias/27">PROCESADORES</a></li>
+        <li class="iconoHome"> <mat-icon routerLink="/">home</mat-icon> </li>
     </ul>
 </nav>
 
-<div class="category-list" *ngIf="vistaCategorias">
-    <a routerLink="/categorias/discos">Discos</a>
-    <a routerLink="/categorias/memorias">Memorias</a>
-    <a routerLink="/categorias/monitores">Monitores</a>
-    <a routerLink="/categorias/memorias">Procesadores</a>
-    <a routerLink="/categorias/teclados">Teclados</a>
+<div class="category-list fade-in-left" *ngIf="vistaCategorias">
+    <mat-icon (click)="verCategorias()" class="iconoCerrar">highlight_off</mat-icon>
+    <br>
+    <div *ngFor="let categoria of arrayCategorias">
+        <div class="card" (click)="categoriaPorId(categoria.id)">
+            <p class="card-name">{{categoria.nombre}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="carrito-list fade-in-right" *ngIf="vistaCarrito">
+    <h2>Carrito de Compras</h2>
+    <div *ngIf="carrito">
+        <p>Total: {{ carrito.total | currency:'ARS' }}</p>
+        <ul>
+            <li *ngFor="let item of carrito.items">
+                {{ item.producto }} - {{ item.precio | moneda }} - Cantidad: {{ item.cantidad }}
+            </li>
+        </ul>
+    </div>
+    <button class="btnLimpiar" (click)="limpiarCarrito()"><mat-icon>delete_outline</mat-icon></button>
 </div>

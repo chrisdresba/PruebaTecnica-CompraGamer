@@ -12,6 +12,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { from } from 'rxjs';
+import { SpinnerService } from '../../shared/services/spinner.service';
 
 @Component({
   selector: 'app-acceso',
@@ -27,7 +28,8 @@ export class AccesoComponent {
   constructor(
     public router: Router,
     public fb: FormBuilder,
-    public auth: AuthService
+    public auth: AuthService,
+    public SpinnerService: SpinnerService
   ) {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -88,8 +90,17 @@ export class AccesoComponent {
         this.auth.validarCredenciales(email, contraseña).subscribe(
           (usuario) => {
             if (usuario) {
+              this.auth.sesionActive();
+              const id = this.auth.buscarIdUsuarioPorEmail(email);
+              if (id) {
+                localStorage.setItem('sesionUsuario', id?.toString());
+              }
+
+              this.SpinnerService.show();
               // Credenciales válidas, el usuario existe
+              localStorage.setItem('sesionUsuario', email);
               setTimeout(() => {
+                this.SpinnerService.hide();
                 this.router.navigate(['/']);
               }, 1000);
             } else {
@@ -106,7 +117,7 @@ export class AccesoComponent {
         );
       }
     } catch (error) {
-      console.log('Error catch al validar las credenciales:', error);
+      console.log('Error al validar las credenciales:', error);
     }
   }
 
@@ -117,7 +128,7 @@ export class AccesoComponent {
           this.formRegistro.value.contraseña !=
           this.formRegistro.value.contraseñaVal
         ) {
-          console.log('Las contraseñas no coinciden');
+          console.error('Las contraseñas no coinciden');
           return;
         }
 
@@ -135,7 +146,11 @@ export class AccesoComponent {
         const registroExitoso = await this.auth.registrarUsuario(usuario);
 
         if (registroExitoso) {
+          this.SpinnerService.show();
+          this.auth.sesionActive();
+          localStorage.setItem('sesionUsuario', usuario.id);
           setTimeout(() => {
+            this.SpinnerService.hide();
             this.router.navigate(['/']);
           }, 1000);
         } else {
@@ -165,9 +180,6 @@ export class AccesoComponent {
     const contraseñaVal = this.formRegistro.value.contraseñaVal;
     if (this.formRegistro.get('contraseñaVal')?.hasError('required')) {
       return 'Ingrese su contraseña';
-    }
-    if (this.formRegistro.get('telefono')?.hasError('pattern')) {
-      return 'Debe ingresar solo números';
     }
     if (this.formRegistro.get('contraseñaVal')?.hasError('minLength')) {
       return 'Mínimo 6 caracteres';

@@ -11,7 +11,6 @@ export class CategoriaNombrePipe implements PipeTransform {
 
   transform(id: number): Observable<string> {
     return this.service.obtenerCategoriaPorId(id).pipe(
-      // Utilizar 'map' para obtener el nombre de la primera categoría encontrada
       map((categorias: SubCategoria[]) => {
         return categorias[0].nombre; // Devuelve el nombre de la primera categoría encontrada
       })

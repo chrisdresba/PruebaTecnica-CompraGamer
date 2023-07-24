@@ -9,16 +9,17 @@
   flex-direction: row;
   gap: 20px;
   margin-bottom: 3em;
+  width: 100%;
   max-width: 1440px;
   margin: auto;
 }
 
 .categorias {
-  width: 30%;
+  width: 25%;
 }
 
 .productos {
-  width: 70%;
+  width: 75%;
 }
 
 .categoria-card {

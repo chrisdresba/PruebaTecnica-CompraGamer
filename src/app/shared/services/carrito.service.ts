@@ -24,8 +24,7 @@ export class CarritoService {
 
     const usuario = localStorage.getItem('sesionUsuario');
     if (usuario) {
-      const sesionUsuario: Usuario = JSON.parse(usuario);
-      this.idUsuario = sesionUsuario.id;
+      this.idUsuario = usuario;
     }
   }
 
@@ -69,5 +68,9 @@ export class CarritoService {
       0
     );
     this.carritoItemCountSubject.next(itemCount);
+  }
+
+  obtenerCarrito(): Carrito {
+    return this.carrito;
   }
 }
