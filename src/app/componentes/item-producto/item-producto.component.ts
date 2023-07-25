@@ -3,6 +3,7 @@ import { Imagen } from 'src/app/shared/interfaces/producto';
 import { CarritoService } from 'src/app/shared/services/carrito.service';
 import { DataService } from 'src/app/shared/services/data.service';
 import { environment } from 'src/environment/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-item-producto',
@@ -31,5 +32,12 @@ export class ItemProductoComponent implements OnInit {
 
   agregarProducto(producto: any) {
     this.serviceCarrito.agregarProducto(producto, this.imagen);
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `Se agrego el producto al carrito!`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 }

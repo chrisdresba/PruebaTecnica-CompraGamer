@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/interfaces/usuario';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 import {
   FormGroup,
@@ -105,19 +106,29 @@ export class AccesoComponent {
               }, 1000);
             } else {
               // Credenciales inválidas, el usuario no existe o la contraseña es incorrecta
-              console.log(
-                'Credenciales inválidas. Por favor, verifica el email y la contraseña.'
-              );
+              Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'El usuario o la contraseña son incorrectos!',
+              });
             }
           },
           (error) => {
             // Manejar el error en caso de que ocurra durante la validación
-            console.log('Error al validar las credenciales:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error...',
+              text: 'El usuario o la contraseña son incorrectos!',
+            });
           }
         );
       }
     } catch (error) {
-      console.log('Error al validar las credenciales:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'El usuario o la contraseña son incorrectos!',
+      });
     }
   }
 
@@ -128,7 +139,11 @@ export class AccesoComponent {
           this.formRegistro.value.contraseña !=
           this.formRegistro.value.contraseñaVal
         ) {
-          console.error('Las contraseñas no coinciden');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Las contraseñas deben ser iguales!',
+          });
           return;
         }
 
@@ -154,13 +169,21 @@ export class AccesoComponent {
             this.router.navigate(['/']);
           }, 1000);
         } else {
-          console.log('Error al registrar el usuario.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'El usuario ya se encuentra registrado!',
+          });
         }
       } else {
         console.log('Por favor, completa todos los campos del formulario.');
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: ' Se produjo un error, intentelo nuevamente!',
+      });
     }
   }
 
