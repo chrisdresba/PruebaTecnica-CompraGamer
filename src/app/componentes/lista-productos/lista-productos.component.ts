@@ -13,8 +13,4 @@ export class ListaProductosComponent {
   constructor(private service: DataService) {}
 
   ngOnInit(): void {}
-
-  agregarProducto(item: Producto) {
-    this.service.agregarCarrito(item);
-  }
 }

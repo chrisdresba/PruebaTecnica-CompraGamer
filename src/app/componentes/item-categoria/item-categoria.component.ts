@@ -24,7 +24,8 @@ export class ItemCategoriaComponent implements OnInit {
     this.imagen = `${this.urlBase}${this.categoria.imagen}`;
   }
 
-  categoriaPorId(id: number) {
-    this.router.navigate([`/categorias/${id}`]);
+  categoriaPorNombre(nombre: string) {
+    const categoria = this.service.reemplazarEspaciosUrl(nombre, 0);
+    this.router.navigate([`/productos/${categoria.toLocaleLowerCase()}`]);
   }
 }

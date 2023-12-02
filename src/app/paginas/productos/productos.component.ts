@@ -11,44 +11,74 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./productos.component.scss'],
 })
 export class ProductosComponent implements OnInit {
-  categoriaId?: number | null;
+  categoriaNombre: string | null = null;
   arrayProductos: Producto[] = [];
   arrayCategorias: SubCategoria[] = [];
 
   constructor(
     public service: DataService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      this.categoriaId = id ? +id : null; // Convierte el valor a número o establece 'null' si no hay ID
-      this.filtrarProductosPorCategoria(this.categoriaId);
-    });
+    try {
+      this.activatedRoute.paramMap.subscribe((params) => {
+        const categoria = params.get('nombre') || '';
+        const nombre = this.service.reemplazarEspaciosUrl(categoria, 1);
+        const valor = this.obtenerValorBusqueda(nombre);
+        if (valor == null) {
+          this.categoriaNombre = nombre ? nombre : null; // Convierte el valor a número o establece 'null' si no hay ID
+          this.filtrarProductosPorCategoria(this.categoriaNombre);
+        } else {
+          this.service
+            .obtenerProductoPorNombre(valor || '')
+            .subscribe((productos) => {
+              this.arrayProductos = productos;
+            });
+        }
+      });
 
-    this.service.obtenerSubcategorias().subscribe((categorias) => {
-      this.arrayCategorias = categorias;
-    });
+      this.service.obtenerSubcategorias().subscribe((categorias) => {
+        this.arrayCategorias = categorias;
+        this.arrayCategorias.sort((a, b) => {
+          const nombreA = a.nombre.toLowerCase();
+          const nombreB = b.nombre.toLowerCase();
+          return nombreA.localeCompare(nombreB);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  filtrarProductosPorCategoria(id: number | null): void {
+  filtrarProductosPorCategoria(nombre: string | null): void {
     try {
-      if (id == null) {
+      if (nombre == null || nombre == '') {
         this.service.obtenerProductos().subscribe((productos) => {
           this.arrayProductos = productos;
         });
       } else {
         // Filtrar los productos por categoría si se proporcionó un ID
         this.service
-          .obtenerProductosPorCategoria(id as number)
+          .obtenerProductosPorSubcategoria(nombre)
           .subscribe((productos) => {
             this.arrayProductos = productos;
           });
       }
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  obtenerValorBusqueda(texto: string): string | null {
+    const patron = /^buscar=(.*)/; // Expresión regular para buscar "buscar=" al principio del string
+
+    const coincidencias = texto.match(patron);
+
+    if (coincidencias && coincidencias.length === 2) {
+      return coincidencias[1];
+    } else {
+      return null;
     }
   }
 }

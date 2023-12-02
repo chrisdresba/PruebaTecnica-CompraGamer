@@ -1,0 +1,245 @@
+#container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow: hidden;
+  background: linear-gradient(45deg, #dddddd 50%, #ccc 50%);
+}
+
+.carrito-list {
+  position: relative;
+  right: 0;
+  display: none;
+  background-color: #fcfdff;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  color: #0f0f0f;
+  width: 80%;
+  max-width: 1200px;
+  min-height: 300px;
+  border-bottom-left-radius: 10px;
+  box-shadow: -5px 5px 30px #b5b0b0;
+  border-bottom-right-radius: 10px;
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+
+  ul::-webkit-scrollbar {
+    width: 3px; /* Ancho del scroll */
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background-color: rgb(176, 176, 176); /* Color del scroll */
+  }
+
+  /* Estilo del scroll en navegadores basados en IE/Edge */
+  ul::-ms-scrollbar {
+    width: 3px; /* Ancho del scroll */
+  }
+
+  ul::-ms-scrollbar-thumb {
+    background-color: rgb(176, 176, 176); /* Color del scroll */
+  }
+
+  li {
+    width: 100%;
+    font-size: 12px;
+  }
+  a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .card {
+    margin-left: 30px;
+  }
+
+  .item-carrito {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: left;
+    width: 70%;
+    margin: auto;
+
+    img {
+      max-height: 80px;
+      margin: 10px;
+    }
+
+    p {
+      margin: 0;
+      margin-left: 0.25em;
+    }
+
+    .name-item-carrito {
+      font-weight: 600;
+    }
+
+    .box-cantidad {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img {
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+      }
+      p {
+        margin: 0, 10px;
+        font-weight: 600;
+      }
+    }
+
+    .price-item-carrito {
+      font-weight: 600;
+      color: #0d52bd;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 1em;
+      margin: 0;
+    }
+  }
+}
+
+hr {
+  width: 90%;
+  margin: auto;
+  background: #c8c8c8;
+  height: 2px;
+  border: none;
+}
+
+.precio-carrito {
+  display: flex;
+  flex-direction: row;
+  background: #f0f0f0;
+  padding: 10px;
+  margin: 15px 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: end;
+  p {
+    margin: 0;
+    margin-right: 10px;
+  }
+}
+
+.btn {
+  padding: 12px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  width: 90%;
+  margin: auto;
+  margin-bottom: auto;
+  margin-bottom: 10px;
+}
+
+.btn-compra {
+  background-image: linear-gradient(
+    to right,
+    #2c3e50 0%,
+    #4ca1af 51%,
+    #2c3e50 100%
+  );
+}
+
+.btn-limpiar {
+  background-image: linear-gradient(
+    to right,
+    #573e3f 0%,
+    #df1d1d 51%,
+    #2c3e50 100%
+  );
+}
+
+.btn-compra:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+.btn-limpiar:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.col-productos {
+  width: 70%;
+}
+
+.col-precios {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.box-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .carrito-list {
+    flex-direction: column;
+  }
+  .columnas {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .col-productos {
+    width: 100%;
+  }
+
+  .col-precios {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .item-carrito {
+    width: 90% !important;
+  }
+  .precio-carrito {
+    margin: 5px;
+    width: 200px;
+    justify-content: center;
+  }
+}

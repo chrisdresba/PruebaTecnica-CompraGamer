@@ -1,7 +1,17 @@
 <div class="main">
-    <ul class="cards">
-        <li *ngFor="let item of arrayProductos" class="cards_item">
-            <app-item-producto id="item" [producto]="item" [estado]="false"></app-item-producto>
-        </li>
-    </ul>
+    <ng-container *ngIf="arrayProductos.length > 0; else noProductos">
+        <ul class="cards">
+            <li *ngFor="let item of arrayProductos" class="cards_item">
+                <app-item-producto id="item" [producto]="item"></app-item-producto>
+            </li>
+        </ul>
+    </ng-container>
+
+    <ng-template #noProductos>
+        <div class="no-products">
+            <img src="/assets/icon/no-product.png" alt="" srcset="" routerLink="/productos">
+            <p>No hay productos disponibles.</p>
+        </div>
+
+    </ng-template>
 </div>

@@ -4,7 +4,7 @@
   height: 120px;
   background-color: #1f2123;
 
-  img {
+  .logo {
     height: 60px;
     padding-left: 20px;
   }
@@ -88,6 +88,8 @@
   justify-content: center;
   text-align: center;
   color: #f5f5f5;
+  z-index: 60;
+  font-size: 14px;
 
   ul {
     display: flex;
@@ -158,18 +160,21 @@
 .carrito-list {
   position: absolute;
   right: 0;
-  z-index: 1000;
+  z-index: 51;
   display: none;
-  background-color: #1f2123;
+  background-color: #fcfdff;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  color: #f6f6f6;
+  color: #0f0f0f;
   width: 330px;
-  min-height: 450px;
-  border: 1px solid #fff;
+  min-height: 300px;
+  border-bottom-left-radius: 10px;
+  box-shadow: -5px 5px 30px #b5b0b0;
+  border-bottom-right-radius: 10px;
+  margin-right: 10px;
 
   h2 {
     display: flex;
@@ -179,6 +184,27 @@
 
   ul {
     list-style: none;
+    padding-left: 0;
+    height: 240px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+
+  ul::-webkit-scrollbar {
+    width: 3px; /* Ancho del scroll */
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background-color: rgb(176, 176, 176); /* Color del scroll */
+  }
+
+  /* Estilo del scroll en navegadores basados en IE/Edge */
+  ul::-ms-scrollbar {
+    width: 3px; /* Ancho del scroll */
+  }
+
+  ul::-ms-scrollbar-thumb {
+    background-color: rgb(176, 176, 176); /* Color del scroll */
   }
 
   li {
@@ -194,17 +220,103 @@
   .card {
     margin-left: 30px;
   }
+
+  .item-carrito {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+
+    img {
+      max-height: 80px;
+      margin: 10px;
+    }
+
+    p {
+      margin: 0;
+      margin-left: 0.25em;
+    }
+
+    .name-item-carrito {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+
+      mat-icon {
+        margin-left: 5px;
+      }
+
+      img {
+        width: 15px;
+        margin-top: 0;
+      }
+    }
+
+    .price-item-carrito {
+      font-weight: 600;
+      color: #0d52bd;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 1em;
+      margin: 0;
+    }
+  }
 }
 
-.btnLimpiar {
-  background-color: rgb(244, 38, 10);
-  display: flex;
-  text-align: center;
+hr {
+  width: 90%;
   margin: auto;
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  justify-content: center;
+  background: #c8c8c8;
+  height: 2px;
+  border: none;
+}
+
+.precio-carrito {
+  display: flex;
+  flex-direction: row;
+  background: #f0f0f0;
+  padding: 10px;
+  margin: 15px 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: end;
+  p {
+    margin: 0;
+    margin-right: 10px;
+  }
+}
+
+.btn-compra {
+  background-image: linear-gradient(
+    to right,
+    #2c3e50 0%,
+    #4ca1af 51%,
+    #2c3e50 100%
+  );
+  padding: 12px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  width: 90%;
+  margin: auto;
+  margin-bottom: auto;
+  margin-bottom: 10px;
+}
+
+.btn-compra:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
 
 .fade-in-left {
@@ -216,17 +328,7 @@
   -webkit-animation: fade-in-right 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: fade-in-right 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
-/* ----------------------------------------------
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
 
-/**
- * ----------------------------------------
- * animation fade-in-left
- * ----------------------------------------
- */
 @-webkit-keyframes fade-in-left {
   0% {
     -webkit-transform: translateX(-50px);
@@ -252,17 +354,6 @@
   }
 }
 
-/* ----------------------------------------------
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation fade-in-right
- * ----------------------------------------
- */
 @-webkit-keyframes fade-in-right {
   0% {
     -webkit-transform: translateX(50px);
@@ -295,13 +386,22 @@
     padding-right: 0px;
   }
 
-  .search-container {
-    display: none !important;
+  mat-toolbar {
+    height: 140px !important;
   }
 
-  img {
+  form {
+    position: absolute;
+    margin-top: 80px;
+    width: 80% !important;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo {
     height: 40px !important;
     padding-left: 10px !important;
+    margin-top: -50px !important;
   }
 
   .itemResponsive {
@@ -317,5 +417,20 @@
 
   br {
     margin-top: 20px !important;
+  }
+
+  .navbar-actions {
+    margin-top: -50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .carrito-list {
+    width: 90% !important;
+  }
+
+  .logo {
+    height: 25px !important;
+    padding-left: 5px !important;
   }
 }

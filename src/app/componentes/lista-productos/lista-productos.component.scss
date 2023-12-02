@@ -24,9 +24,25 @@ html {
 
 .cards_item {
   display: flex;
+  width: 100%;
   padding: 1rem;
   justify-content: center;
   margin: auto;
+}
+
+.no-products {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  height: 250px;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media (min-width: 40rem) {
@@ -38,5 +54,11 @@ html {
 @media (min-width: 56rem) {
   .cards_item {
     width: 30%;
+  }
+}
+
+@media (max-height: 600px) {
+  .no-products {
+    justify-content: start;
   }
 }

@@ -62,7 +62,7 @@
 
 .titulo {
   color: #1e1e1e;
-  font-size: 0.8rem;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -75,18 +75,34 @@
   line-height: 1.5;
   margin-bottom: 1.25rem;
   font-weight: 600;
+  height: 16px;
 }
 
 .precio {
   color: #1e1e1e;
   font-size: 1.5rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;
+  margin: 0;
+  margin-bottom: 0.5em;
   font-weight: 600;
 }
 
 @media (min-width: 1340px) {
   .cards_item {
     width: 50%;
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    min-width: 90%;
+    margin: auto;
+  }
+  .titulo {
+    font-size: 10px;
+  }
+
+  .textos {
+    font-size: 11px;
   }
 }

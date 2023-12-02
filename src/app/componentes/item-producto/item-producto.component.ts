@@ -27,17 +27,31 @@ export class ItemProductoComponent implements OnInit {
   }
 
   obtenerURLImagen(): void {
-    this.imagen = `${this.urlBase}${this.producto.imagenes[0].nombre}-med.jpg`;
+    this.imagen = `${this.urlBase}${this.producto.imagenes[0].nombre}.jpg`;
   }
 
-  agregarProducto(producto: any) {
-    this.serviceCarrito.agregarProducto(producto, this.imagen);
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: `Se agrego el producto al carrito!`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
+  async agregarProducto(producto: any) {
+    const valor = await this.serviceCarrito.agregarProducto(
+      producto,
+      this.imagen
+    );
+    if (valor) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Se agrego el producto al carrito!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      // this.serviceCarrito.carritoViewActive();
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `Error, no hay stock!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   }
 }

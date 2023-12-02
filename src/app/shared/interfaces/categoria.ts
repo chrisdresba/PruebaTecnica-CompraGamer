@@ -1,1 +1,5 @@
-export interface Categoria {}
+export interface Categoria {
+  id: number;
+  nombre: string;
+  state: boolean;
+}

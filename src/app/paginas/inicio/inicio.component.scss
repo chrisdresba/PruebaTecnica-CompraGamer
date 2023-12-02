@@ -57,3 +57,17 @@ hr {
   max-width: 1200px;
   margin: auto;
 }
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.2em;
+    margin: 2em 0 0 2em;
+  }
+  a {
+    margin-left: 3em;
+  }
+
+  hr {
+    margin-left: 3em;
+  }
+}

@@ -5,14 +5,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-  AbstractControl,
-} from '@angular/forms';
-import { from } from 'rxjs';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SpinnerService } from '../../shared/services/spinner.service';
 
 @Component({
@@ -90,20 +83,16 @@ export class AccesoComponent {
 
         this.auth.validarCredenciales(email, contraseña).subscribe(
           (usuario) => {
-            if (usuario) {
+            if (usuario.user) {
               this.auth.sesionActive();
-              const id = this.auth.buscarIdUsuarioPorEmail(email);
-              if (id) {
-                localStorage.setItem('sesionUsuario', id?.toString());
-              }
 
               this.SpinnerService.show();
               // Credenciales válidas, el usuario existe
-              localStorage.setItem('sesionUsuario', email);
+              //localStorage.setItem('sesionUsuario', email);
               setTimeout(() => {
                 this.SpinnerService.hide();
                 this.router.navigate(['/']);
-              }, 1000);
+              }, 0);
             } else {
               // Credenciales inválidas, el usuario no existe o la contraseña es incorrecta
               Swal.fire({
@@ -163,11 +152,11 @@ export class AccesoComponent {
         if (registroExitoso) {
           this.SpinnerService.show();
           this.auth.sesionActive();
-          localStorage.setItem('sesionUsuario', usuario.id);
+          //  localStorage.setItem('sesionUsuario', usuario.id);
           setTimeout(() => {
             this.SpinnerService.hide();
             this.router.navigate(['/']);
-          }, 1000);
+          }, 0);
         } else {
           Swal.fire({
             icon: 'error',

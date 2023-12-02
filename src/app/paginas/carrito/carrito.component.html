@@ -1,0 +1,37 @@
+<div id="container">
+    <div class="carrito-list" *ngIf="carrito">
+        <ul class="columnas col-productos">
+            <div class="box-item">
+                <li *ngFor="let item of carrito.items">
+                    <div class="item-carrito">
+                        <img [src]="item.imagen" alt="" srcset="">
+                        <div>
+                            <p class="name-item-carrito">{{ item.producto | uppercase }} ({{ item.precio | moneda }})
+                            </p>
+                            <div class="box-cantidad">
+                                <img src="/assets/icon/icon-restar.png" alt="restar"
+                                    (click)="restarCantidadProducto(item)">
+                                <p>{{item.cantidad}}</p>
+                                <img src="/assets/icon/icon-agregar.png" alt="agregar"
+                                    (click)="agregarCantidadProducto(item)">
+                            </div>
+                            <p class="price-item-carrito"> {{ item.precio*item.cantidad | moneda }}</p>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ul>
+        <div class="columnas col-precios">
+            <img src="/assets/icon/logo-fix.png" alt="" srcset="" width="200">
+            <div class="precio-carrito">
+                <p>DETALLE DE COMPRA</p>
+            </div>
+            <div class="precio-carrito">
+                <p>TOTAL:</p>
+                <p> {{ carrito.total | moneda }}</p>
+            </div>
+            <button class="btn btn-limpiar" (click)="limpiarCarrito()">LIMPIAR CARRITO</button>
+            <button class="btn btn-compra" (click)="procesarCompra()">PROCESAR COMPRA</button>
+        </div>
+    </div>
+</div>
